@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+
     <bean id="user" class="com.lhz.spring.ioc.domain.User" >
         <!-- collaborators and configuration for this bean go here -->
         <property name="id" value="1"/>
@@ -16,7 +18,5 @@
     <bean id="myFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
         <property name="targetBeanName" value="user"/>
     </bean>
-
-
 
 </beans>

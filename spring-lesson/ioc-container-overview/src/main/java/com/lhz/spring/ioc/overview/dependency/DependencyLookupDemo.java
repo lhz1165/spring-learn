@@ -1,7 +1,8 @@
-package com.lhz.spring.ioc.overview;
+package com.lhz.spring.ioc.overview.dependency;
 
 import com.lhz.spring.ioc.annotation.Super;
 import com.lhz.spring.ioc.domain.User;
+import com.lhz.spring.ioc.overview.repository.UserRepository;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
@@ -20,7 +21,7 @@ import java.util.Map;
  */
 public class DependencyLookupDemo {
 	public static void main(String[] args) {
-		BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:META-INF/dependency-look-up.xml");
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:META-INF\\dependency-look-up.xml");
 //		lookupLazy(beanFactory);
 //		lookupRealTime(beanFactory);
 		//类型查找
@@ -79,4 +80,9 @@ public class DependencyLookupDemo {
 			System.out.println("@super用户的"+users);
 		}
 	}
+
+
+
+
+
 }
