@@ -6,6 +6,7 @@ import com.lhz.spring.ioc.overview.repository.UserRepository;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Map;
@@ -28,9 +29,9 @@ public class DependencyInjectionDemo {
 		//System.out.println("实时查找"+userRepository);
 
 		//11依赖注入DefaultListableBeanFactory
+		//这里是AbstractRefreshableApplicationContext里面的getBeanFactory实现
 		System.out.println(userRepository.getBeanFactory());
-		//false
-		//System.out.println(userRepository.getBeanFactory()==beanFactory);
+
 
 
 		//22依赖查找 exception
@@ -41,6 +42,19 @@ public class DependencyInjectionDemo {
 		//true说明 注入的就是当前上下文对象
 		System.out.println(userRepository.getObjectFactory().getObject()==beanFactory);
 
+	}
+
+	/**
+	 * 为什么会false
+	 * @param userRepository
+	 * @param beanFactory
+	 */
+	private static void whoIsIocContainer(UserRepository userRepository, BeanFactory beanFactory) {
+		//false
+		//ConfigurableApplicationContext---->ApplicationContext---->BeanFactory
+		//ConfigurableApplicationContext #getBeanFactory
+		System.out.println(userRepository.getBeanFactory()==beanFactory);
+		//ApplicationContext就是BeanFactory
 	}
 
 }
