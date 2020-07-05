@@ -15,6 +15,16 @@
 <!--                <ref bean="superUser"/>-->
 <!--            </util:list>-->
 <!--        </property>-->
-
     </bean>
+    <bean id="man" class="org.interfaces.impl.Man">
+        <!-- property元素用来指定需要容器注入的属性，food属性需要容器注入，此处是设值注入， 因此Man类中必须拥有setFood方法 -->
+        <property name="food">
+            <!-- 此处将另一个bean的引用注入给man bean -->
+            <ref bean="orange"/>
+        </property>
+    </bean>
+    <!-- 定义apple bean，Food接口的实现类 -->
+    <bean id="apple" class="org.interfaces.impl.Apple2"></bean>
+
+    <bean id="orange" class="org.interfaces.impl.Orange"></bean>
 </beans>
