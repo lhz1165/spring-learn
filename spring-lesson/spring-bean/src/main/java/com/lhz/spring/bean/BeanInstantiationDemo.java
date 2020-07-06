@@ -22,6 +22,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @see SpecialBeanInstantiationDemo
  *
  * 接下来是看如何初始化Bean
+ * @see SpecialBeanInstantiationDemo
  *
  */
 public class BeanInstantiationDemo {

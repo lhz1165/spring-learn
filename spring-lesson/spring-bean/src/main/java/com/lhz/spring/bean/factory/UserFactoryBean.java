@@ -3,6 +3,8 @@ package com.lhz.spring.bean.factory;
 import com.lhz.spring.ioc.domain.User;
 import org.springframework.beans.factory.FactoryBean;
 
+import javax.annotation.PostConstruct;
+
 /**
  * @author lhzlhz
  * @create 2020/7/5
@@ -15,6 +17,8 @@ public class UserFactoryBean implements FactoryBean<User> {
 		user.setName("lhz factoryBean");
 		return user;
 	}
+
+
 
 	@Override
 	public Class<?> getObjectType() {

@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  *
+ * 注册bean的方法
  * //1通过@bean定义
  * //2通过component
  * //3通过import导入
@@ -37,7 +38,7 @@ public class AnnotationBeanDefinitionDemo {
 		//注册配置类 如果通过这个api  不需要使用component或import注解
 		beanFactory.register(Config.class);
 
-		//4
+		//4 通过api注册实现
 		registerBeanDefinition(beanFactory, "lhz11", User.class);
 		registerBeanDefinition(beanFactory,  User.class);
 		//启动应用上下文
