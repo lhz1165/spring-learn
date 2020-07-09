@@ -24,7 +24,5 @@
         </property>
     </bean>
     <!-- 定义apple bean，Food接口的实现类 -->
-    <bean id="apple" class="org.interfaces.impl.Apple2"></bean>
 
-    <bean id="orange" class="org.interfaces.impl.Orange"></bean>
 </beans>
