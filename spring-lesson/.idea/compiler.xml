@@ -10,6 +10,7 @@
         <module name="spring-mashibin-lesson" />
         <module name="spring-bean" />
         <module name="java-beans-demo" />
+        <module name="dependency-injection-demo" />
         <module name="ioc-container-overview" />
       </profile>
     </annotationProcessing>

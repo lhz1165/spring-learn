@@ -12,4 +12,11 @@
         <property name="user" ref="superUser"></property>
     </bean>
 
+<!--    <bean id="aa" class="com.lhz.spring.di.demo2.A">-->
+<!--        <property name="b" ref="bb"/>-->
+<!--    </bean>-->
+<!--    <bean id="bb" class="com.lhz.spring.di.demo2.B">-->
+<!--        <property name="a" ref="aa"/>-->
+<!--    </bean>-->
+
 </beans>
