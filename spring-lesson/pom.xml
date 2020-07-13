@@ -14,6 +14,7 @@
       <module>spring-bean</module>
     <module>spring-mashibin-lesson</module>
     <module>dependency-injection-demo</module>
+      <module>dependency-resources</module>
   </modules>
 
   <name>spring-lesson</name>
