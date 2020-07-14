@@ -22,7 +22,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @see SpecialBeanInstantiationDemo
  *
  * 接下来是看如何初始化Bean
- * @see SpecialBeanInstantiationDemo
+ * @see BeanInitializationDemo
  *
  */
 public class BeanInstantiationDemo {
@@ -37,7 +37,5 @@ public class BeanInstantiationDemo {
 		System.out.println(user);
 		System.out.println(user2);
 		System.out.println(user3);
-
-
 	}
 }

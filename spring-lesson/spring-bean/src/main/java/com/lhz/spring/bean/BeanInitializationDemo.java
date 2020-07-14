@@ -25,7 +25,7 @@ public class BeanInitializationDemo {
 		//启动
 		beanFactory.refresh();
 
-		//依赖查找
+		//依赖查找 实例化bean
 		UserFactory userFactory=beanFactory.getBean(UserFactory.class);//会自动回调postConstruct
 
 		//关闭

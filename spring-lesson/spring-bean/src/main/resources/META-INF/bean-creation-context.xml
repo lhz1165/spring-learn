@@ -4,14 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!-- 1静态方法 -->
+    <!-- 1【静态】方法 -->
     <bean id="user-by-static-method" class="com.lhz.spring.ioc.domain.User" factory-method="createUser">
     </bean>
-<!--  2实例工厂方法  -->
-    <bean id="user-by-factory" factory-bean="userFactory" factory-method="createUserByFactory"></bean>
-
+    <!--  2实例工厂方法  -->
+    <bean id="user-by-factory" factory-bean="userFactory" factory-method="createUserByFactory"/>
     <bean id="userFactory" class="com.lhz.spring.bean.factory.UserFactory"/>
-<!--  factoryBean实例化  -->
-    <bean id="user-by-factoryBean" class="com.lhz.spring.bean.factory.UserFactoryBean"></bean>
+
+    <!--  3factoryBean实例化  -->
+    <bean id="user-by-factoryBean" class="com.lhz.spring.bean.factory.UserFactoryBean"/>
 
 </beans>

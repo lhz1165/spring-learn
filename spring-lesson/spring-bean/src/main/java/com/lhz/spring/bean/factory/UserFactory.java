@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
  * @create 2020/7/5
  */
 public class UserFactory  implements InitializingBean {
-	public User createUserByFactory() {
+	public  User createUserByFactory() {
 		User user = new User();
 		user.setId(2);
 		user.setName("lhz factory");

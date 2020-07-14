@@ -19,11 +19,11 @@ public class BeanDefinitionCreationDemo {
 		//通过属性设置
 		beanDefinitionBuilder.addPropertyValue("id", 14);
 		beanDefinitionBuilder.addPropertyValue("name", "lhz");
-		//获取beanDefinition实例
+		//获取beanDefinition实例  AbstractBeanDefinition
 		BeanDefinition beanDefinition = beanDefinitionBuilder.getBeanDefinition();
 		//beanDefinition并非最终状态可以修改
 		//-----------------------------------------------
-		//2通过抽象类派生
+		//2通过抽象类派生  extends AbstractBeanDefinition
 		GenericBeanDefinition genericBeanDefinition = new GenericBeanDefinition();
 		//设置bean类型
 		genericBeanDefinition.setBeanClass(User.class);
@@ -31,5 +31,6 @@ public class BeanDefinitionCreationDemo {
 		propertyValues.add("id", 1)
 				.add("name", 2);
 		genericBeanDefinition.setPropertyValues(propertyValues);
+
 	}
 }
