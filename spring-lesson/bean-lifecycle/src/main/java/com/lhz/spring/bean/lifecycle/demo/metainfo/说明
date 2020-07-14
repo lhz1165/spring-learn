@@ -1,0 +1,2 @@
+bean原信息的解析阶段，用来生成BeanDefinition
+接下来是bean的注册阶段
