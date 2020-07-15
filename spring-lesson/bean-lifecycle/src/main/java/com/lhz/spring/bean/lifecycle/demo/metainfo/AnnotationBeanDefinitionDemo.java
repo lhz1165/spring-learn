@@ -23,10 +23,7 @@ public class AnnotationBeanDefinitionDemo {
 		System.out.println(beanDefinitionCounter2);
 		//bean name来自于BeanNameGenerator，注解实现来自于AnnotationBeanNameGenerator
 		AnnotationBeanDefinitionDemo demo = beanFactory.getBean("annotationBeanDefinitionDemo", AnnotationBeanDefinitionDemo.class);
-
 		System.out.println(demo);
-
-
 	}
 
 }

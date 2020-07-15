@@ -1,2 +1,5 @@
 bean原信息的解析阶段，用来生成BeanDefinition
 接下来是bean的注册阶段
+注册好了是合并阶段（父子合并）user和superuser这两个
+user是父类不需要合并只需要使用RootBeanDefinition.class
+而superuser有父类，所以需要用GenericBeanDefinition.class

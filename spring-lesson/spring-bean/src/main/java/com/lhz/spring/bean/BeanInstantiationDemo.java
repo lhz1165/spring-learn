@@ -29,13 +29,13 @@ public class BeanInstantiationDemo {
 	public static void main(String[] args) {
 		BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:META-INF\\bean-creation-context.xml");
 		//1静态方法
-		User user =  beanFactory.getBean("user-by-static-method",User.class);
-		//2工厂方法
-		User user2 = beanFactory.getBean("user-by-factory",User.class);
+//		User user =  beanFactory.getBean("user-by-static-method",User.class);
+//		//2工厂方法
+//		User user2 = beanFactory.getBean("user-by-factory",User.class);
 		//3factoryBean
 		User user3 = beanFactory.getBean("user-by-factoryBean", User.class);
-		System.out.println(user);
-		System.out.println(user2);
+//		System.out.println(user);
+//		System.out.println(user2);
 		System.out.println(user3);
 	}
 }
