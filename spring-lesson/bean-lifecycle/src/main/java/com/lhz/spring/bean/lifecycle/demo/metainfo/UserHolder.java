@@ -9,8 +9,7 @@ import com.lhz.spring.ioc.domain.User;
 public class UserHolder {
     private User user;
 
-    public UserHolder() {
-    }
+
 
     public UserHolder(User user) {
         this.user = user;
