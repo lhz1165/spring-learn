@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/beans/spring-context.xsd
+">
+<!--    <context:annotation-config/>-->
+<!--    <context:component-scan base-package="com.lhz"/>-->
+
+    <bean id="user2" class="com.lhz.spring.ioc.domain.User" >
+        <!-- collaborators and configuration for this bean go here -->
+        <property name="id" value="1"/>
+        <property name="name" value="lhz"/>
+    </bean>
+
+    <bean id="superUser2" class="com.lhz.spring.ioc.domain.SuperUser" parent="user2" primary="true">
+        <property name="address" value="hangzhou"/>
+    </bean>
+
+    <bean id="userHolder2" class="com.lhz.spring.bean.lifecycle.demo.metainfo.UserHolder" autowire="constructor">
+        <property name="number" value="12"/>
+        <property name="desc" value="11111"/>
+    </bean>
+
+
+</beans>

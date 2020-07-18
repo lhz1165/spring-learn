@@ -9,7 +9,33 @@ import com.lhz.spring.ioc.domain.User;
 public class UserHolder {
     private User user;
 
+    int number;
 
+    String desc;
+
+    public User getUser() {
+        return user;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
     public UserHolder(User user) {
         this.user = user;
@@ -19,6 +45,8 @@ public class UserHolder {
     public String toString() {
         return "UserHolder{" +
                 "user=" + user +
+                ", number=" + number +
+                ", desc='" + desc + '\'' +
                 '}';
     }
 }
