@@ -40,7 +40,16 @@ public class InitializationLifeCycleDemo {
         int number = reader.loadBeanDefinitions(location);
 
         System.out.println("加载beandefinition数量 : "+number);
-//        //父
+
+        //显示的调用SmartInitializingSingleton的afterSingletonsInstantiated方法
+        //将已注册的BeanDefinition初始化spring bean
+        //当所有的bean都创建好了之后 再执行SmartInitializingSingleton的回调方法afterSingletonsInstantiated()
+        //这样就不用再getBean方法里面再区创建bean
+        factory.preInstantiateSingletons();
+
+
+
+        //        //父
 //        User user = factory.getBean("user2", User.class);
 //        System.out.println(user);
 
@@ -49,6 +58,8 @@ public class InitializationLifeCycleDemo {
 //        System.out.println(superUser);
         UserHolder userHolder = factory.getBean("userHolder2", UserHolder.class);
         System.out.println(userHolder);
+
+
 
     }
 

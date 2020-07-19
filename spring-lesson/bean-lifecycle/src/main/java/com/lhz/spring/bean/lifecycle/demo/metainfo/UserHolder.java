@@ -13,7 +13,8 @@ import javax.annotation.PostConstruct;
  * @author: lhz
  * @date: 2020/7/16
  **/
-public class UserHolder implements BeanNameAware, BeanFactoryAware, BeanClassLoaderAware, InitializingBean {
+public class UserHolder implements BeanNameAware, BeanFactoryAware, BeanClassLoaderAware,
+        InitializingBean, SmartInitializingSingleton{
     private User user;
 
     int number;
@@ -92,8 +93,8 @@ public class UserHolder implements BeanNameAware, BeanFactoryAware, BeanClassLoa
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("override afterPropertiesSet");
-        this.desc = "afterPropertiesSet";
+        System.out.println("override afterPropertiesSet ");
+        this.desc = "afterPropertiesSet desc";
     }
 
     /**
@@ -103,5 +104,13 @@ public class UserHolder implements BeanNameAware, BeanFactoryAware, BeanClassLoa
      */
     public void customerInit(){
         System.out.println("customer init ");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void afterSingletonsInstantiated() {
+        this.desc = "afterSingletonsInstantiated desc";
     }
 }
