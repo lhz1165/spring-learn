@@ -20,10 +20,11 @@
         <property name="address" value="hangzhou"/>
     </bean>
 
-    <bean id="userHolder2" class="com.lhz.spring.bean.lifecycle.demo.metainfo.UserHolder" autowire="constructor">
+    <bean id="userHolder2" class="com.lhz.spring.bean.lifecycle.demo.metainfo.UserHolder" autowire="constructor" init-method="customerInit">
         <property name="number" value="12"/>
         <property name="desc" value="11111"/>
     </bean>
+    <bean class="com.lhz.spring.bean.lifecycle.demo.metainfo.MyInstantiationAwareBeanPostProcessor" />
 
 
 </beans>
