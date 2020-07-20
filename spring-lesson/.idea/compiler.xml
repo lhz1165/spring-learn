@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring-bean" />
         <module name="dependency-resources" />
+        <module name="aop-demo" />
         <module name="dependency-injection-demo" />
         <module name="ioc-container-overview" />
         <module name="bean-lifecycle" />
