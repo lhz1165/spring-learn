@@ -20,8 +20,8 @@
         <property name="address" value="hangzhou"/>
     </bean>
 
-    <bean id="myFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
-        <property name="targetBeanName" value="user"/>
-    </bean>
+<!--    <bean id="myFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">-->
+<!--        <property name="targetBeanName" value="user"/>-->
+<!--    </bean>-->
 
 </beans>
