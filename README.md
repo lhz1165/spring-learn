@@ -6,5 +6,5 @@ spring编程思想的底层学习
 - ioc-container-overview：初步探究ioc容器，使用他的api
 - spring-bean：spring bean的初始化，注册，实例化的方式
 
-
+包括BeanDefinition的创建----->Bean实例的生成-------->依赖注入-------->Bean生命周期---------->拓展处理器接口的实例
 
