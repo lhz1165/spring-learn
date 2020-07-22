@@ -50,7 +50,7 @@ public class InitializationLifeCycleDemo {
 
 
         //        //父
-//        User user = factory.getBean("user2", User.class);
+        User user = factory.getBean("user2", User.class);
 //        System.out.println(user);
 
 //        //子

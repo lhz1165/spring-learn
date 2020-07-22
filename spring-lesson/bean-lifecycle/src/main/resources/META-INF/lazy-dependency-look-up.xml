@@ -16,15 +16,15 @@
         <property name="name" value="lhz"/>
     </bean>
 
-    <bean id="superUser2" class="com.lhz.spring.ioc.domain.SuperUser" parent="user2" primary="true">
-        <property name="address" value="hangzhou"/>
-    </bean>
+<!--    <bean id="superUser2" class="com.lhz.spring.ioc.domain.SuperUser" parent="user2" primary="true">-->
+<!--        <property name="address" value="hangzhou"/>-->
+<!--    </bean>-->
 
-    <bean id="userHolder2" class="com.lhz.spring.bean.lifecycle.demo.metainfo.UserHolder" autowire="constructor" init-method="customerInit">
-        <property name="number" value="12"/>
-        <property name="desc" value="11111"/>
-    </bean>
-    <bean class="com.lhz.spring.bean.lifecycle.demo.metainfo.MyInstantiationAwareBeanPostProcessor" />
+<!--    <bean id="userHolder2" class="com.lhz.spring.bean.lifecycle.demo.metainfo.UserHolder" autowire="constructor" init-method="customerInit">-->
+<!--        <property name="number" value="12"/>-->
+<!--        <property name="desc" value="11111"/>-->
+<!--    </bean>-->
+
 
 
 </beans>
