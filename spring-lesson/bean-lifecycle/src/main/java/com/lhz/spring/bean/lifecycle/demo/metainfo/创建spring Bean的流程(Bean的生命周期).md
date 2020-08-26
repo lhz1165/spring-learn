@@ -1,5 +1,6 @@
 ## 创建spring Bean的流程(Bean的生命周期)
 
+
 #### 1.main方法的获取bean的方法
 
 ------
