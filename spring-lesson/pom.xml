@@ -17,6 +17,7 @@
         <module>dependency-resources</module>
         <module>bean-lifecycle</module>
         <module>aop-demo</module>
+        <module>event</module>
     </modules>
 
     <name>spring-lesson</name>
