@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/beans/spring-context.xsd
+">
+<!--    增强-->
+    <bean id="countingAdvice" class="com.lhz.spring.aop.demo.advice.CountingAdvice"/>
+<!--  目标类  -->
+    <bean id="mathCalculatorTarget" class="com.lhz.spring.aop.demo.MathCalculator"/>
+
+    <bean id="logAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <!-- 5:指定增强类(通知advice)-->
+        <property name="advice" ref="countingAdvice"/>
+        <!-- 4: 配置切入点PoinCut 指定匹配哪些方法直接写方法名-->
+        <property name="mappedNames">
+            <list>
+                <value>div</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--配置代理-->
+    <!--配置代理-->
+    <bean id="mathCalculator" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--目标类实例-->
+        <property name="target" ref="mathCalculatorTarget"/>
+        <!--交叉业务-->
+        <property name="interceptorNames">
+            <list>
+                <value>logAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+
+</beans>

@@ -23,7 +23,7 @@ public class LogAspects2 implements Ordered {
     //2、其他的切面引用
     //切点 用来匹配我们的joinPoint（这里匹配到了div(int i,int j)）
     // joinPoint是MathCalculator类潜在的可能被执行增强的方法，例如public int div(int i,int j)
-    @Pointcut("execution(public int com.lhz.spring.aop.demo.MathCalculator.*(..))")
+    @Pointcut("execution(public int com.lhz.spring.aop.demo.MathCalculator2.*(..))")
     public void pointCut(){};
 
     //@Before在目标方法之前切入；切入点表达式（指定在哪个方法切入）

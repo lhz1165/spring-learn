@@ -24,6 +24,8 @@ public class MethodCounter implements Serializable {
         times = (times != null) ? new Integer(times + 1) : new Integer(1);
         allCount++;
         map.put(methodName, times);
+        System.out.println("allCOUNT " + allCount);
+        System.out.println("times " + times);
     }
 
     public Integer getCalls(Method method) {

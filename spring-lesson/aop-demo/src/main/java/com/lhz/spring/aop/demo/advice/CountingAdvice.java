@@ -1,5 +1,6 @@
 package com.lhz.spring.aop.demo.advice;
 
+import org.aspectj.lang.annotation.Before;
 import org.springframework.aop.MethodBeforeAdvice;
 
 import java.lang.reflect.Method;
@@ -12,5 +13,6 @@ public class CountingAdvice extends MethodCounter implements MethodBeforeAdvice 
     @Override
     public void before(Method method, Object[] args, Object target) throws Throwable {
         count(method);
+
     }
 }
