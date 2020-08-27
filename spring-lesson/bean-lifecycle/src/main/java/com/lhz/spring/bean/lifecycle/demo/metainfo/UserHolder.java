@@ -83,7 +83,7 @@ public class UserHolder implements BeanNameAware, BeanFactoryAware, BeanClassLoa
     }
 
     /**
-     * bean实例化阶段的三种回调
+     * bean实例化完成 初始化是阶段的三种回调
      */
     @PostConstruct
     public void initPostConstruct() {
