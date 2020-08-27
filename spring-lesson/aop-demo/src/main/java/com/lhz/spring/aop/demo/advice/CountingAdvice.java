@@ -13,6 +13,5 @@ public class CountingAdvice extends MethodCounter implements MethodBeforeAdvice 
     @Override
     public void before(Method method, Object[] args, Object target) throws Throwable {
         count(method);
-
     }
 }

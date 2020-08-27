@@ -34,6 +34,12 @@
                 <value>logAdvisor</value>
             </list>
         </property>
+<!--        You might be wondering why the list does not hold bean references. （logAdvisor）   -->
+<!--        The reason for this is that：
+            if the singleton property of the ProxyFactoryBean is set to false,it must be able to return independent proxy instances。
+            If any of the advisors is itself a prototype, an independent instance would need to be returned,
+             so it is necessary to be able to obtain an instance of the prototype from the factory.
+             Holding a reference is not sufficient-->
     </bean>
 
 

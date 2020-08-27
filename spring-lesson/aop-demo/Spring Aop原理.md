@@ -109,3 +109,5 @@ public Object getProxy(@Nullable ClassLoader classLoader) {
 ```
 
 最后 我在customerAop包里自己实现了一个简单代理对象的前置处理。
+### aop交给spring管理的好处
+One of the most important benefits of using a ProxyFactoryBean or another IoC-aware class to create AOP proxies is that advices and pointcuts can also be managed by IoC. This is a powerful feature, enabling certain approaches that are hard to achieve with other AOP frameworks. For example, an advice may itself reference application objects (besides the target, which should be available in any AOP framework), benefiting from all the pluggability provided by Dependency Injection.
