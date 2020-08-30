@@ -29,31 +29,31 @@ public class MathCalculator {
      * ProxyFactory来创建代理对象 以编程的方式
      * @param args
      */
-    public static void main(String[] args) {
-        ProxyFactory pf = new ProxyFactory(new MathCalculator());
-        NameMatchMethodPointcutAdvisor myAdviosr = new NameMatchMethodPointcutAdvisor();
-        myAdviosr.setAdvice(new CountingAdvice());
-        myAdviosr.setMappedName("div");
-        pf.addAdvisor(myAdviosr);
-        MathCalculator proxy = (MathCalculator)pf.getProxy();
-        proxy.div(1, 2);
-
-
-    }
+//    public static void main(String[] args) {
+//        ProxyFactory pf = new ProxyFactory(new MathCalculator());
+//        NameMatchMethodPointcutAdvisor myAdviosr = new NameMatchMethodPointcutAdvisor();
+//        myAdviosr.setAdvice(new CountingAdvice());
+//        myAdviosr.setMappedName("div");
+//        pf.addAdvisor(myAdviosr);
+//        MathCalculator proxy = (MathCalculator)pf.getProxy();
+//        proxy.div(1, 2);
+//
+//
+//    }
     /**
      * ProxyFactory来创建代理对象 通过配置文件创建代理对象
      * @param args
      */
     //
-//    public static void main(String[] args) {
-//        ApplicationContext beanFactory = new ClassPathXmlApplicationContext("classpath:aop-test.xml");
-//
-//
-//        MathCalculator bean = (MathCalculator)beanFactory.getBean("mathCalculator");
-//
-//        bean.div(2, 1);
-//
-//    }
+    public static void main(String[] args) {
+        ApplicationContext beanFactory = new ClassPathXmlApplicationContext("classpath:aop-test.xml");
+
+
+        MathCalculator bean = (MathCalculator)beanFactory.getBean("mathCalculator");
+
+        bean.div(2, 1);
+
+    }
 
 
 
