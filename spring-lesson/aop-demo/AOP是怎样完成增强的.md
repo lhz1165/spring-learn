@@ -144,3 +144,120 @@ private void addAdvisorOnChainCreation(Object next) {
 	}
 
 ```
+
+## advice的原理
+
+```java
+//单例模式,返回一个DefaultAdvisorAdapterRegistry对象
+AdvisorAdapterRegistry registry = GlobalAdvisorAdapterRegistry.getInstance();
+```
+
+### 适配advice(适配器模式)
+
+正是DefaultAdvisorAdapterRegistry里面配置了一些适配器，才为aop的advice提供了编织能力。
+
+它维护了三种适配器，用来适配advisor和advice
+
+```java
+//添加这些通知的适配器
+public DefaultAdvisorAdapterRegistry() {
+   registerAdvisorAdapter(new MethodBeforeAdviceAdapter());
+   registerAdvisorAdapter(new AfterReturningAdviceAdapter());
+   registerAdvisorAdapter(new ThrowsAdviceAdapter());
+}
+//把advice或者inteceptor包装成 advisor
+	@Override
+	public Advisor wrap(Object adviceObject) throws UnknownAdviceTypeException {
+		if (adviceObject instanceof Advisor) {
+			return (Advisor) adviceObject;
+		}
+		if (!(adviceObject instanceof Advice)) {
+			throw new UnknownAdviceTypeException(adviceObject);
+		}
+		Advice advice = (Advice) adviceObject;
+        //如果是Inteceptor不需要适配
+		if (advice instanceof MethodInterceptor) {
+			// So well-known it doesn't even need an adapter.
+			return new DefaultPointcutAdvisor(advice);
+		}
+        //如果是AfterReturningAdvice或者MethodBeforeAdvice
+        //循环遍历，查看是否支持适配
+		for (AdvisorAdapter adapter : this.adapters) {
+			// 使用adaptor的support方法来构造advisor
+			if (adapter.supportsAdvice(advice)) {
+				return new DefaultPointcutAdvisor(advice);
+			}
+		}
+		throw new UnknownAdviceTypeException(advice);
+	}
+//从适配器里获取拦截器，这些拦截器都必须是Inteceptor的形式
+	@Override
+public MethodInterceptor[] getInterceptors(Advisor advisor) throws UnknownAdviceTypeException {
+		List<MethodInterceptor> interceptors = new ArrayList<>(3);
+		Advice advice = advisor.getAdvice();
+		if (advice instanceof MethodInterceptor) {
+			interceptors.add((MethodInterceptor) advice);
+		}
+		for (AdvisorAdapter adapter : this.adapters) {
+			if (adapter.supportsAdvice(advice)) {
+				interceptors.add(adapter.getInterceptor(advisor));
+			}
+		}
+		if (interceptors.isEmpty()) {
+			throw new UnknownAdviceTypeException(advisor.getAdvice());
+		}
+		return interceptors.toArray(new MethodInterceptor[0]);
+	}
+
+```
+
+再看看这些具体的适配器
+
+```java
+//AfterReturningAdviceAdapter
+//MethodBeforeAdviceAdapter
+//ThrowsAdviceAdapter
+
+以及他们需要实现的方法
+class MethodBeforeAdviceAdapter implements AdvisorAdapter, Serializable {
+
+	@Override
+	public boolean supportsAdvice(Advice advice) {
+		return (advice instanceof MethodBeforeAdvice);
+	}
+
+	@Override
+	public MethodInterceptor getInterceptor(Advisor advisor) {
+		MethodBeforeAdvice advice = (MethodBeforeAdvice) advisor.getAdvice();
+		return new MethodBeforeAdviceInterceptor(advice);
+	}
+
+}
+//再看看Interceptor
+public class MethodBeforeAdviceInterceptor implements MethodInterceptor, BeforeAdvice, Serializable {
+
+	private final MethodBeforeAdvice advice;
+
+
+	/**
+	 * Create a new MethodBeforeAdviceInterceptor for the given advice.
+	 * @param advice the MethodBeforeAdvice to wrap
+	 */
+	public MethodBeforeAdviceInterceptor(MethodBeforeAdvice advice) {
+		Assert.notNull(advice, "Advice must not be null");
+		this.advice = advice;
+	}
+
+
+	@Override
+	public Object invoke(MethodInvocation mi) throws Throwable {
+		this.advice.before(mi.getMethod(), mi.getArguments(), mi.getThis());
+		return mi.proceed();
+	}
+
+}
+```
+
+可以得出结论spring AOP为了实现advice的织入，设计了拦截器封装这些功能,所以advice回首先变成inteceptor，然后执行拦截器的invoke()方法时候回出发advice的回调。
+
+有了这些封装，我们就可以直接调方法获取拦截器，加入拦截器链执行拦截器了。
