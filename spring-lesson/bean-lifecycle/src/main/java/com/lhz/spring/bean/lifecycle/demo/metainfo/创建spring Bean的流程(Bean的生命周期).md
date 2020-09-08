@@ -34,7 +34,7 @@ sharedInstance = getSingleton(beanName, () -> {
 Object bean = resolveBeforeInstantiation(beanName, mbdToUse);
 ```
 
-​     这里面是执行InstantiationAwareBeanPostProcessor接口的两个实现方法postProcessBeforeInstantiation和postProcessAfterInstantiation，这两个处理器可以返回自己定义对象，如果有bean那么就不会执行spring通过反射生产bean的流程了（Object beanInstance = doCreateBean(beanName, mbdToUse, args);）
+​     这里面是执行InstantiationAwareBeanPostProcessor接口的个实现方法postProcessBeforeInstantiation(应postProcessAfterInstantiation个法在充性候行)，这个处理器可以返回自己定义对象，如果有bean那么就不会执行spring通过反射生产bean的流程了（Object beanInstance = doCreateBean(beanName, mbdToUse, args);）
 
 #### 4.进入Object beanInstance = doCreateBean(beanName, mbdToUse, args);获取对象，实例化阶段
 
