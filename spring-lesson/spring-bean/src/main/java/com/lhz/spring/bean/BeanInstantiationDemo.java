@@ -1,7 +1,9 @@
 package com.lhz.spring.bean;
 
+import com.lhz.spring.bean.factory.UserFactoryBean;
 import com.lhz.spring.ioc.domain.User;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -27,13 +29,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class BeanInstantiationDemo {
 	public static void main(String[] args) {
-		BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:META-INF\\bean-creation-context.xml");
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("classpath:META-INF/bean-creation-context.xml");
 		//1静态方法
 //		User user =  beanFactory.getBean("user-by-static-method",User.class);
 //		//2工厂方法
-		User user2 = beanFactory.getBean("user-by-factory",User.class);
+//		User user2 = beanFactory.getBean("user-by-factory",User.class);
 		//3factoryBean
-//		User user3 = beanFactory.getBean("user-by-factoryBean", User.class);
+		User user3 = beanFactory.getBean("user-by-factoryBean", User.class);
+		UserFactoryBean factoryBean = (UserFactoryBean)beanFactory.getBean("&user-by-factoryBean");
 //		System.out.println(user);
 //		System.out.println(user2);
 //		System.out.println(user3);
