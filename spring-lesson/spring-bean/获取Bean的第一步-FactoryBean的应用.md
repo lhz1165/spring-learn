@@ -1,4 +1,4 @@
-[Bean](../spring-Bean的归纳.md)
+[<<<Returan to Bean](../spring-Bean的归纳.md)
 
 # FactoryBean的应用
 
