@@ -1,3 +1,3 @@
-spring  Bean的归纳
+[Parent](../README.md)
 
-- [spring-bean](spring-lesson/bean.md)
+# spring  Bean的归纳
