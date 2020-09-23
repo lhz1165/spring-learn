@@ -1,3 +1,5 @@
+[Bean](../spring-Bean的归纳.md)
+
 ## Bean的创建流程
 
 
