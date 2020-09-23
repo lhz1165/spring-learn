@@ -77,7 +77,7 @@ String FACTORY_BEAN_PREFIX = "&";
 
 再进入object = doGetObjectFromFactoryBean(factory, beanName);
 
-关节代码 object = factory.getObject(); 就是我们UserFactoryBean实现的
+关键代码 object = factory.getObject(); 就是我们UserFactoryBean实现的
 
 ```java
 @Override
