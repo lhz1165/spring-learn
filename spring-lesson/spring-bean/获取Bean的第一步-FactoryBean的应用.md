@@ -117,4 +117,4 @@ try {
 
 FactoryBean产生的自定义对象实例。
 
-[测试代码](../spring-Bean的归纳.md)
+[测试代码](src/main/java/com/lhz/spring/bean/BeanInstantiationDemo.java)
