@@ -5,11 +5,11 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <!--    &lt;!&ndash; 1【静态】方法 &ndash;&gt;-->
-<!--    <bean id="user-by-static-method" class="com.lhz.spring.ioc.domain.User" factory-method="createUser">-->
-<!--    </bean>-->
-<!--    &lt;!&ndash;  2实例工厂方法  &ndash;&gt;-->
-<!--    <bean id="user-by-factory" factory-bean="userFactory" factory-method="createUserByFactory"/>-->
-<!--    <bean id="userFactory" class="com.lhz.spring.bean.factory.UserFactory"/>-->
+<!--    <bean id="user-by-static-method" class="com.lhz.spring.ioc.domain.User" factory-method="createUser"/>-->
+
+    <!--  2实例工厂方法  -->
+    <bean id="user-by-factory" factory-bean="userFactory" factory-method="createUserByFactory"/>
+    <bean id="userFactory" class="com.lhz.spring.bean.factory.UserFactory"/>
 
     <!--  3factoryBean实例化  -->
     <bean id="user-by-factoryBean" class="com.lhz.spring.bean.factory.UserFactoryBean"/>

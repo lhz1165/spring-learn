@@ -13,7 +13,7 @@ beanFactory.refresh();
 
 以上都是bean工厂产生bean的基本步骤
 
-最终在里面进行代理对象的生成
+**拿到目标对象，最终在后置初始化处理器里面完成代理对象的创建**
 
 ```java
 //进入初始化
@@ -45,7 +45,20 @@ public Object postProcessAfterInitialization(@Nullable Object bean, String beanN
 }
 ```
 
+## 创建代理对象主要分为两个步骤
 
+1. 初始化拦截器链(List<Advisor>advisors ,Advisor就是封装切点和增强的对象)
+2. 创建代理对象，并且把拦截器链与他绑定
+
+------
+
+#### 步骤1 初始化拦截器链
+
+```
+Object[] specificInterceptors = getAdvicesAndAdvisorsForBean(bean.getClass(), beanName, null);
+```
+
+#### 步骤2  创建代理对象
 
 创建代理对象的代码
 
