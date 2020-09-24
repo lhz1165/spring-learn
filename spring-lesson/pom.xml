@@ -19,6 +19,7 @@
         <module>aop-demo</module>
         <module>event</module>
         <module>spring-mvc-demo</module>
+        <module>spring-applicationcontext</module>
     </modules>
 
     <name>spring-lesson</name>
