@@ -1,3 +1,4 @@
+[<<<Return To applicationContext](../spring的上下文拓展归纳.md)
 # spring如何为为Bean赋值
 
 ```
