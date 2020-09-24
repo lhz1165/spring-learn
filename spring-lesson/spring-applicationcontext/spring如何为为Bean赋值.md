@@ -67,3 +67,6 @@ if (convertible) {
 	convertedValue = convertForProperty(resolvedValue, propertyName, bw, converter);
 }
 ```
+
+[example](src/main/java/com/lhz/context/DatePropertyEditor.java)
+
