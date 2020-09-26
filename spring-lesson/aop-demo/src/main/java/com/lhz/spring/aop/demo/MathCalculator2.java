@@ -1,6 +1,9 @@
 package com.lhz.spring.aop.demo;
 
+import org.springframework.beans.factory.support.PropertiesBeanDefinitionReader;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @author: lhz
@@ -10,7 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class MathCalculator2 {
 
 
-    public int div(int i,int j,boolean self){
+    public int div(int i,int j){
         System.out.println("MathCalculator...div...");
 //        if (self) {
 //            MathCalculator m = new MathCalculator();
@@ -31,7 +34,7 @@ public class MathCalculator2 {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext beanFactory = new AnnotationConfigApplicationContext();
-        beanFactory.register(LogAspects.class,MainConfigOfAOP.class,LogAspects2.class);
+        beanFactory.register(LogAspects.class,MainConfigOfAOP.class);
         //beanFactory.register(MyNameMatchMethodPointcutAdvisor.class);
         //beanFactory.getBeanFactory().addBeanPostProcessor(new MyAnnotationAwareAspectJAutoProxyCreator());
 
@@ -42,7 +45,7 @@ public class MathCalculator2 {
        // NameMatchMethodPointcutAdvisor advisor = beanFactory.getBean(MyNameMatchMethodPointcutAdvisor.class);
        // advisor.setAdvice(new CountingAdvice());
         //advisor.setMappedName("div");
-        bean.div(2, 1,true);
+        bean.div(2, 1);
         //bean.print();
         beanFactory.close();
     }
@@ -59,6 +62,8 @@ public class MathCalculator2 {
 //        MathCalculator proxy = (MathCalculator)proxyFactory.getProxy();
 //        proxy.div(1,2,true);
 //    }
+
+
 
 
 }

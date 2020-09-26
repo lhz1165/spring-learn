@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--<context:component-scan base-package=""-->
+
+    <!-- 定义目标对象 -->
+    <bean name="productDao" class="com.lhz.spring.aop.demo.MathCalculator2" />
+
+    <!-- 定义切面 -->
+    <bean name="myAspectXML" class="com.lhz.spring.aop.demo.LogAspects3" />
+    <!-- 配置AOP 切面 -->
+    <aop:config>
+        <!-- 定义切点函数 -->
+        <aop:pointcut id="pointcut" expression="execution(public int com.lhz.spring.aop.demo.MathCalculator2.*(..))" />
+
+        <!-- 定义通知 order 定义优先级,值越小优先级越大-->
+        <aop:aspect ref="myAspectXML" order="0">
+            <!-- 定义通知
+            method 指定通知方法名,必须与MyAspectXML中的相同
+            pointcut 指定切点函数
+            -->
+            <aop:before method="logStart" pointcut-ref="pointcut" />
+
+            <!-- 后置通知  returning="returnVal" 定义返回值 必须与类中声明的名称一样-->
+            <aop:after-returning method="logEnd" pointcut-ref="pointcut" />
+
+        </aop:aspect>
+    </aop:config>
+</beans>

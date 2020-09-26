@@ -15,7 +15,7 @@
 	<!-- Bootstraps the root web application context before servlet initialization -->
 	<listener>
 		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
+			demo.MyDataContextListener
 		</listener-class>
 	</listener>
 	<!-- 配置springmvc 的DispatcherServlet -->
