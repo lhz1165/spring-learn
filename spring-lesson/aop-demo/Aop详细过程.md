@@ -9,19 +9,19 @@ Spring的代理对象生成思想是这样的：Spring协调了ProxyFactoryBean�
 
 相关类
 
-**ProxyConfig**（顶级类，确保所有的proxy的创建者都有一致的配置）
+**ProxyConfig**（顶级类，确保所有的proxy的创建者都有一致的配置例如targetClass,optimize,frozen...）
 
 ​		继承
 
-**AdvisedSupport** （实现了Advised）他是代理对象配置的管理者，例如获取目标对象，决定以什么方式（jdk or cglib）来创建代理，他不是proxy的创建者，只是持有Advices和Advisors
+**AdvisedSupport** （实现了Advised）他是代理对象配置的管理者，例如获取目标对象targetSouce，他不是proxy的创建者，用来创建advisor，并持有Advices和Advisors
 
 ​		继承
 
-**ProxyCreatorSupport** （配置产生Proxy的工厂，createAopProxy()）
+**ProxyCreatorSupport** （持有AopProxyFactory对象，配置产生Proxy的工厂，createAopProxy()，并不创建proxy只是工厂）
 
 ​		继承
 
-**ProxyFactoryBean**，**ProxyFactory**，**AspectProxyFactory**（具体生产）
+**ProxyFactoryBean**，**ProxyFactory**，**AspectProxyFactory**（具体生产，利用工厂来产生代理对象）
 
 
 
