@@ -10,4 +10,5 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <!-- 扫描时跳过 @Controller 注解的JAVA类（控制器） -->
 <!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
     </context:component-scan>
+
 </beans>
