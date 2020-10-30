@@ -79,3 +79,7 @@ public Object invoke(MethodInvocation invocation) throws Throwable {
    return invokeWithinTransaction(invocation.getMethod(), targetClass, invocation::proceed);
 }
 ```
+
+**TransactionAspectSupport**的子类**TransactionInterceptor**有继承了**MethodInterceptor**，在之前的aop章节中我们知道增强会被封装成Interceptor。
+
+所以它就是一个增强方法的类。增强方法就是父类的invokeWithinTransaction()

@@ -2,10 +2,7 @@ package com.lhz.spring.aop.demo;
 
 import com.lhz.spring.aop.demo.advice.CountingAdvice;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.Ordered;
 
@@ -41,18 +38,18 @@ public class LogAspects implements Ordered {
      *
      * @param joinPoint
      */
-    @Before("pointCut()")
-    public void logStart(JoinPoint joinPoint) {
-        Object[] args = joinPoint.getArgs();
-        System.out.println("" + joinPoint.getSignature()
-                .getName() + "运行。。。@Before111111111111111:参数列表是：{" + Arrays.asList(args) + "}");
-    }
-
-    @After("pointCut()")
-    public void logEnd(JoinPoint joinPoint) {
-        System.out.println("" + joinPoint.getSignature()
-                .getName() + "结束。。。@After11111111111111111111");
-    }
+//    @Before("pointCut()")
+//    public void logStart(JoinPoint joinPoint) {
+//        Object[] args = joinPoint.getArgs();
+//        System.out.println("" + joinPoint.getSignature()
+//                .getName() + "运行。。。@Before111111111111111:参数列表是：{" + Arrays.asList(args) + "}");
+//    }
+//
+//    @After("pointCut()")
+//    public void logEnd(JoinPoint joinPoint) {
+//        System.out.println("" + joinPoint.getSignature()
+//                .getName() + "结束。。。@After11111111111111111111");
+//    }
 
     @Override
     public int getOrder() {
@@ -60,10 +57,10 @@ public class LogAspects implements Ordered {
     }
 
 //    //JoinPoint一定要出现在参数表的第一位
-//    @AfterReturning(value="pointCut()",returning="result")
-//    public void logReturn(JoinPoint joinPoint,Object result){
-//        System.out.println(""+joinPoint.getSignature().getName()+"正常返回。。。@AfterReturning:运行结果：{"+result+"}");
-//    }
+    @AfterReturning(value="pointCut()",returning="result")
+    public void logReturn(JoinPoint joinPoint,Object result){
+        System.out.println(""+joinPoint.getSignature().getName()+"正常返回。。。@AfterReturning:运行结果：{"+result+"}");
+    }
 
     //    @AfterThrowing(value="pointCut()",throwing="exception")
 //    public void logException(JoinPoint joinPoint,Exception exception){
