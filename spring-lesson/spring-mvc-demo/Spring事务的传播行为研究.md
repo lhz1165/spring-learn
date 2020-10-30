@@ -174,4 +174,69 @@ test1和test2因为外部开启了事务，所以，内部事务变成了外部�
 
 
 
+## 在aop与事务的研究
+
+如果一个方法是一个joinPoint，对他进行增强
+
+```java
+@PointC
+@Override
+@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
+public void addRequire(User user) {
+    save(user);
+}
+@Before(value = "pointCut()")
+    public void beforeTest() throws Exception {
+       dosomething....
+    }
+```
+
+如果增强方法里面出现异常，即使advice不添加@Transactional注解，它是会自动回滚的，例如调用addRequire()，方法进行增强，addRequiteException()出现异常，这两个插入方法均回滚，他们共同属于一个事务，
+
+```java
+@Before(value = "pointCut()")
+public void beforeTest() throws Exception {
+    userService.addRequiteException(new User("456", "789"));
+    System.out.println("----------before--------------");
+}
+
+   @PostMapping("/a")
+    public void test() {
+        userService.addRequire(new User("123","456"));
+
+    }
+```
+
+------
+
+要是想让addRequire()的插入不回滚，addRequiteException()回滚那么可以，这样把增强里面的传播行为改为addRequiteExceptionNESTED()或者addRequiteExceptionNew()
+
+```java
+@Before(value = "pointCut()")
+public void beforeTest() throws Exception {
+    try {
+        userService.addRequiteExceptionNESTED(new User("456", "789"));
+    } catch (Exception e) {
+    }
+    System.out.println("----------before--------------");
+
+}
+@Before(value = "pointCut()")
+public void beforeTest() throws Exception {
+    try {
+        userService.addRequiteExceptionNEW(new User("456", "789"));
+    } catch (Exception e) {
+    }
+    System.out.println("----------before--------------");
+
+}
+  @Transactional(rollbackFor = Exception.class,propagation = Propagation.NESTED)
+    public void addRequiteExceptionNESTED(User user) throws Exception {
+        save(user);
+        throw new Exception("11111");
+    }
+```
+
+更多关于aop和事务的研究后面会出
+
 由于我这是在springboot项目里面操作的比较方便，所以没有贴出具体项目代码，建议不要单元测试，因为单元测试自带回滚
