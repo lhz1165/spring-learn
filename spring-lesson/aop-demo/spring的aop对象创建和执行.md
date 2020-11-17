@@ -1,4 +1,5 @@
 [<<<Return To AOP](../spring-aop归纳.md)
+
 # springAop流程
 
 ## 1. spring获取代理对象
@@ -68,31 +69,58 @@ protected Object createProxy(Class<?> beanClass, @Nullable String beanName,
 
    return proxyFactory.getProxy(getProxyClassLoader());
 }
-public Object getProxy(@Nullable ClassLoader classLoader) {
-    //CglibAopProxy.getProxy()
-		return createAopProxy().getProxy(classLoader);
-	}
 ```
+
+
+
+获取一个ProxyFactory工厂的getProxy()方法来创建
+
+```java
+public Object getProxy(@Nullable ClassLoader classLoader) {
+   return createAopProxy().getProxy(classLoader);
+}
+	//1 createAopProxy
+	protected final synchronized AopProxy createAopProxy() {
+		if (!this.active) {
+			activate();
+		}
+		return getAopProxyFactory().createAopProxy(this);
+	}
+	//2 getProxy
+	Object getProxy(@Nullable ClassLoader classLoader);
+
+```
+
+getProxy具体包含以下过程
+
+**1-1**
+	获取AopProxyFactory==》DefaultAopProxyFactory
+**1-2**
+
+​	使用DefaultAopProxyFactory的createAopProxy(）方法来获取AopProxy(JdkDynamicAopProxy||CglibAopProxy)
+
+**2-1**
+
+有了AopProxy之后，调用对应实现类的getProxy()方法获得代理对象
+
+```
+Proxy.newProxyInstance(classLoader, proxiedInterfaces, this);
+```
+
+
 
 来到CglibAopProxy的getProxy()来创建代理对象
 
 ## 2. spring执行代理方法
 
-有了代理对象之后，只要执行到目标方法(joinpoint)，就CglibAopProxy的内部类DynamicAdvisedInterceptor的intercept(）方法
+有了代理对象之后，只要执行到目标方法(joinpoint)，如果是cglib代理，那么进入CglibAopProxy的内部类DynamicAdvisedInterceptor的intercept(）方法
 
 new CglibMethodInvocation(proxy, target, method, args, targetClass, chain, methodProxy).proceed();是关键
 
 ```java
 public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
-   Object oldProxy = null;
-   boolean setProxyContext = false;
-   Object target = null;
-   TargetSource targetSource = this.advised.getTargetSource();
-   try {
-      target = targetSource.getTarget();
-      Class<?> targetClass = (target != null ? target.getClass() : null);
-      List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
-      Object retVal;
+		//省略
+    	//关键
         retVal = new CglibMethodInvocation(proxy, target, method, args, targetClass, chain, methodProxy).proceed();
       }
       retVal = processReturnType(proxy, target, method, retVal);
