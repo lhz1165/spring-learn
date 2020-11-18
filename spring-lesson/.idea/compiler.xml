@@ -11,12 +11,12 @@
         <module name="aop-demo" />
         <module name="dependency-injection-demo" />
         <module name="ioc-container-overview" />
-        <module name="spring-mvc-demo" />
-        <module name="event" />
-        <module name="java-beans-demo" />
-        <module name="spring-mashibin-lesson" />
         <module name="bean-lifecycle" />
+        <module name="event" />
         <module name="spring-applicationcontext" />
+        <module name="spring-mashibin-lesson" />
+        <module name="java-beans-demo" />
+        <module name="spring-mvc-demo" />
       </profile>
     </annotationProcessing>
   </component>

@@ -16,14 +16,14 @@ public class MainConfigOfAOP {
     }
 
     //切面类加入到容器中
-    @Bean
-    public LogAspects logAspects(){
-        return new LogAspects();
-    }
+//    @Bean
+//    public LogAspects logAspects(){
+//        return new LogAspects();
+//    }
     //切面类加入到容器中
     @Bean
-    public LogAspects2 logAspects2(){
-        return new LogAspects2();
+    public LogAspects3 logAspects2(){
+        return new LogAspects3();
     }
 
 }

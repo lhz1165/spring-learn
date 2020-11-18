@@ -27,7 +27,7 @@
             <aop:before method="logStart" pointcut-ref="pointcut" />
 
             <!-- 后置通知  returning="returnVal" 定义返回值 必须与类中声明的名称一样-->
-            <aop:after-returning method="logEnd" pointcut-ref="pointcut" />
+<!--            <aop:after-returning method="logEnd" pointcut-ref="pointcut" />-->
 
         </aop:aspect>
     </aop:config>

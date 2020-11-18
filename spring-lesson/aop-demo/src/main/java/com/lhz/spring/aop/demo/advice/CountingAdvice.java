@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 public class CountingAdvice extends MethodCounter implements MethodBeforeAdvice {
     @Override
     public void before(Method method, Object[] args, Object target) throws Throwable {
-        count(method);
+        //count(method);
+        System.out.println("before ------------------");
     }
 }

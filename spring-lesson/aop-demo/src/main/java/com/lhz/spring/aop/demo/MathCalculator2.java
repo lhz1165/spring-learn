@@ -13,7 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MathCalculator2 {
 
 
-    public int div(int i,int j){
+    public Integer div(int i,int j){
         System.out.println("MathCalculator...div...");
 //        if (self) {
 //            MathCalculator m = new MathCalculator();
@@ -45,7 +45,7 @@ public class MathCalculator2 {
        // NameMatchMethodPointcutAdvisor advisor = beanFactory.getBean(MyNameMatchMethodPointcutAdvisor.class);
        // advisor.setAdvice(new CountingAdvice());
         //advisor.setMappedName("div");
-        bean.div(2, 1);
+        Integer div = bean.div(2, 1);
         //bean.print();
         beanFactory.close();
     }

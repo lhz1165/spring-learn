@@ -8,40 +8,39 @@
         https://www.springframework.org/schema/beans/spring-context.xsd
 ">
 <!--    增强-->
-    <bean id="countingAdvice" class="com.lhz.spring.aop.demo.advice.CountingAdvice"/>
+    <bean id="beforeAdvice" class="com.lhz.spring.aop.demo2.aop.advice.BeforeAdvice"/>
 <!--  目标类  -->
-    <bean id="mathCalculatorTarget" class="com.lhz.spring.aop.demo.MathCalculator"/>
+    <bean id="userService" class="com.lhz.spring.aop.demo2.service.UserService"/>
 
     <bean id="logAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
         <!-- 5:指定增强类(通知advice)-->
-        <property name="advice" ref="countingAdvice"/>
+        <property name="advice" ref="beforeAdvice"/>
         <!-- 4: 配置切入点PointCut 指定匹配哪些方法直接写方法名-->
         <property name="mappedNames">
             <list>
-                <value>div</value>
+                <value>login</value>
             </list>
         </property>
     </bean>
 
     <!--配置代理-->
-    <!--配置代理-->
-    <bean id="mathCalculator" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <bean id="userServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
         <!--目标类实例-->
-        <property name="target" ref="mathCalculatorTarget"/>
+        <property name="target" ref="userService"/>
         <!--交叉业务-->
         <property name="interceptorNames">
             <list>
                 <value>logAdvisor</value>
             </list>
         </property>
-<!--        You might be wondering why the list does not hold bean references. （logAdvisor）   -->
-<!--        The reason for this is that：
-            if the singleton property of the ProxyFactoryBean is set to false,it must be able to return independent proxy instances。
-            If any of the advisors is itself a prototype, an independent instance would need to be returned,
-             so it is necessary to be able to obtain an instance of the prototype from the factory.
-             Holding a reference is not sufficient-->
     </bean>
 
+    <!--        You might be wondering why the list does not hold bean references. （logAdvisor）   -->
+    <!--        The reason for this is that：
+                if the singleton property of the ProxyFactoryBean is set to false,it must be able to return independent proxy instances。
+                If any of the advisors is itself a prototype, an independent instance would need to be returned,
+                 so it is necessary to be able to obtain an instance of the prototype from the factory.
+                 Holding a reference is not sufficient-->
 
 
 

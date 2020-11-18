@@ -65,7 +65,7 @@ public class MathCalculator4 {
         ApplicationContext beanFactory = new ClassPathXmlApplicationContext("classpath:aop-test2.xml");
 
 
-        MathCalculator4 bean = (MathCalculator4)beanFactory.getBean("productDao");
+        MathCalculator2 bean = (MathCalculator2)beanFactory.getBean("productDao");
 
         bean.div(2, 1);
     }

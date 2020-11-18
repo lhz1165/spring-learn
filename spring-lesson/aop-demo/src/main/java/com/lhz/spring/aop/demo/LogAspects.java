@@ -18,7 +18,7 @@ import java.util.Arrays;
  * <p>
  * 使用order 优先级越高before越先执行，after越后执行
  */
-@Aspect
+//@Aspect
 public class LogAspects implements Ordered {
     //抽取公共的切入点表达式
     //1、本类引用
