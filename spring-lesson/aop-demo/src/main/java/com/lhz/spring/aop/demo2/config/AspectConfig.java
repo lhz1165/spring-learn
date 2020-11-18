@@ -21,6 +21,7 @@ public class AspectConfig {
     public UserService userService() {
         return new UserService();
     }
+
     @Order(2)
     @Bean
     public BeforeAdvice beforeAdvice() {

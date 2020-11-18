@@ -15,5 +15,7 @@ public class MainTest {
         applicationContext.refresh();
         UserService userService = applicationContext.getBean(UserService.class);
         userService.login();
+
+        applicationContext.close();
     }
 }
