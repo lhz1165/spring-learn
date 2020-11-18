@@ -1,5 +1,7 @@
 package com.lhz.spring.aop.demo3.aop;
 
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -18,4 +20,9 @@ public class LoginAspect {
     public void beforeAdvice() {
         System.out.println("proxyFactory-----记录登录日志.......");
     }
+
+//    @After("pointCut()")
+//    public void afterAdvice(JoinPoint joinPoint) {
+//        System.out.println("proxyFactory-----记录登录日志 after.......");
+//    }
 }
