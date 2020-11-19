@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author lhzlhz
  * @create 2020/9/9
  */
-
 @Controller
 public class IndexController{
 

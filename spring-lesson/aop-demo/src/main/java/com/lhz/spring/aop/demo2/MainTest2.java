@@ -14,6 +14,7 @@ public class MainTest2 {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
         applicationContext.register(AspectConfig.class);
         applicationContext.refresh();
+
         UserService userService = (UserService) applicationContext.getBean("userServiceProxy");
         userService.login();
 

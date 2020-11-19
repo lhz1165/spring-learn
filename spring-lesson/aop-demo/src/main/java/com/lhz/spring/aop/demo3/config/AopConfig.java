@@ -16,4 +16,5 @@ public class AopConfig {
     public LoginAspect aspect() {
         return new LoginAspect();
     }
+
 }

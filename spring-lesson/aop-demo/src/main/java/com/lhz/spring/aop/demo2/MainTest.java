@@ -14,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MainTest {
     public static void main(String[] args) {
         ApplicationContext application = new ClassPathXmlApplicationContext("classpath:aop-test3.xml");
+
         UserService userService = (UserService)application.getBean("userServiceProxy");
         userService.login();
     }

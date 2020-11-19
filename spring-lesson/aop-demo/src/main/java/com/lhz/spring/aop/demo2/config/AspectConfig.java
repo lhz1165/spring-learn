@@ -46,4 +46,6 @@ public class AspectConfig {
         proxyFactoryBean.setInterceptorNames("advisor1");
         return proxyFactoryBean;
     }
+
+
 }
