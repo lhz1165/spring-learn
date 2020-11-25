@@ -161,3 +161,5 @@ public void addRequire(User user) throws Exception {
 ```
 
 这样才会都回滚
+
+以上均是我实际操作的出来的，可以直接抄
