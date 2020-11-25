@@ -7,13 +7,12 @@
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/beans/spring-context.xsd
 ">
+<!--    <bean id="user" class="com.lhz.spring.bean.lifecycle.demo.demo1.factory_ben.User1" lazy-init="true">-->
+<!--        <property name="id" value="1"></property>-->
+<!--    </bean>-->
 
-
-    <bean id="user" class="com.lhz.spring.bean.lifecycle.demo.demo1.factory_ben.User1" lazy-init="true">
-        <property name="id" value="1"></property>
-    </bean>
-<!--    <bean id="user" class="com.lhz.spring.bean.lifecycle.demo.demo1.factory_ben.UserFactoryBean"/>-->
-    <bean id="proxyPostProcess" class="com.lhz.spring.bean.lifecycle.demo.demo1.factory_ben.ProxyCreatorPostProcess"/>
+<!--&lt;!&ndash;    <bean id="user" class="com.lhz.spring.bean.lifecycle.demo.demo1.factory_ben.UserFactoryBean"/>&ndash;&gt;-->
+<!--    <bean id="proxyPostProcess" class="com.lhz.spring.bean.lifecycle.demo.demo1.factory_ben.ProxyCreatorPostProcess"/>-->
 
 
 </beans>
