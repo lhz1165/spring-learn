@@ -1,11 +1,13 @@
 [<<<Returan to Spring事务](../spring-事务.md)
 # 关于spring事务研究
 
-一般来说，一个controller调用一个service，要是service1调用service的事务方法，那也只是涉及到事务的传播行为的问题，但是service内部会调用自身的事务方法，但这可能造成事务不回滚，属于自生调用的问题。
+一般来说，一个controller调用一个service，要是service1调用service2的事务方法，那也只是涉及到事务的传播行为的问题，但是service内部会调用自身的事务方法，但这可能造成事务不回滚，属于自生调用的问题。
 
 
 
 基于以上问题研究什么情况下自身调用回回滚以及如何解决。
+
+使用Postman发送请求http://localhost:8080/test02来测试
 
 ```java
 @PostMapping("/test01")
@@ -17,34 +19,44 @@ public CommonResult test() throws Exception {
 
 -----------------------------------------------------------------------------------------
 [userService]
-   //两个内部方法，一个被一个外部的service调用
-@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
-  @Override
+//两个内部方法，他们同时被外部的一个方法调用
+    //内部 1
+	@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
+  	@Override
     public void addRequire2(User user) {
         save(user);
     }
+	//内部 2
     @Override
     @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
     public void addRequiteException(User user) throws Exception {
         save(user);
         throw new Exception("123");
     }
-```
 
-## 没有try-catch
-
-情景零：外部事物方法不加注解
-
-```
+//外部方法，调用上面的两个方法
 @Override
 //@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
 public void addRequire(User user) throws Exception {
-
         addRequire2(user);
         user.setUsername("123");
         addRequiteException(user);
+}
+```
 
 
+
+## 没有try-catch,没有自己注入自己
+
+情景零：外部事物方法不加注解
+
+```java
+@Override
+//@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
+public void addRequire(User user) throws Exception {
+        addRequire2(user);
+        user.setUsername("123");
+        addRequiteException(user);
 }
 ```
 
@@ -62,7 +74,37 @@ public void addRequire(User user) throws Exception {
 }
 ```
 
-结果：回滚
+结果：全部回滚
+
+## 没有try-catch,自己注入自己
+
+```java
+@Override
+//@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
+public void addRequire(User user) throws Exception {
+        userService.addRequire2(user);
+        user.setUsername("123");
+        userService.addRequiteException(user);
+}
+```
+
+addRequire2不回滚，addRequiteException回滚，
+
+这是因为根据事务的传播行为，如果外部函数开启事务，内部函数会开启互相独立的事务，互不影响。
+
+```
+@Override
+@Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
+public void addRequire(User user) throws Exception {
+        userService.addRequire2(user);
+        user.setUsername("123");
+        userService.addRequiteException(user);
+}
+```
+
+全部回滚
+
+这是因为 所有函数都在一个事务里面,只要内部抛出异常内部事务也一起回滚 。
 
 ## 内部try-catch
 
@@ -162,4 +204,4 @@ public void addRequire(User user) throws Exception {
 
 这样才会都回滚
 
-以上均是我实际操作的出来的，可以直接抄
+以上均是我实际操作的出来的。
