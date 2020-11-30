@@ -145,6 +145,8 @@ public void addRequire(User user) throws Exception {
 
 结果：第一个方法不回滚，第二个回滚。
 
+这是因为根据事务的传播行为，如果外部函数开启事务，内部函数会开启互相独立的事务，互不影响。
+
 
 
 情景三：注入自己，并且外部事务注解
@@ -166,6 +168,8 @@ public void addRequire(User user) throws Exception {
 
 结果：理想状态正常，都回滚
 
+这是因为 所有函数都在一个事务里面,只要内部抛出异常内部事务也一起回滚 。
+
 ## 内部抛出exception
 
 ```java
@@ -173,9 +177,14 @@ public void addRequire(User user) throws Exception {
 @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
 public void addRequire(User user) throws Exception {
     try {
+        //！！！！！！！
+        //这两个方法都不会出现异常
         userService.addRequire2(user);
         user.setUsername("123");
+        //！！！！！！！
+        //这两个方法都不会出现异常
         userService.addRequire2(user);
+        //只有外部这里出现异常
         throw new Exception("123");
     } catch (Exception e) {
         
@@ -185,6 +194,8 @@ public void addRequire(User user) throws Exception {
 ```
 
 都不回滚
+
+
 
 ```java
 @Override
