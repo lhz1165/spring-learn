@@ -15,4 +15,5 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="prefix" value=""></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+    <bean class="config.DateTimeFormatConfiguration"/>
 </beans>

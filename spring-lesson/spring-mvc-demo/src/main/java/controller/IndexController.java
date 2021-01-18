@@ -1,11 +1,15 @@
 package controller;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDateTime;
 
 /**
  * @author lhzlhz
@@ -20,4 +24,9 @@ public class IndexController{
 		mav.addObject("message", "Hello Spring MVC");
 		return mav;
 	}
+    @RequestMapping("/hello2")
+    @ResponseBody
+    public LocalDateTime handleRequest2(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime dateTime){
+        return dateTime;
+    }
 }
