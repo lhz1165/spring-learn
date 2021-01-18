@@ -52,6 +52,7 @@ public TemporalAccessor parse(String text, Locale locale) throws ParseException 
 
 
 方法二：自定义Convert
+如果前端约定传递时间戳字符换，例如http://localhost:8080/lai?dateTime=1610962256000
 
 ```java
 @Component
