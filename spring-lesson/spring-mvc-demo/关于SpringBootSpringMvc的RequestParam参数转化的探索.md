@@ -1,4 +1,4 @@
-[<<<Returan to Spring事务](SpringBoot&SpringMvc的全局参数转化.md)
+[<<<Returan to SpringBoot&SpringMvc的全局参数转化](SpringBoot&SpringMvc的全局参数转化.md)
 # 关于SpringBoot/SpringMvc参数转化的探索
 
 ```
@@ -9,7 +9,8 @@ public LocalDateTime handleRequest2(@RequestParam LocalDateTime dateTime){
 }
 ```
 
-如果我在浏览器输入http://localhost:8080/hello2?dateTime=2017-02-12T12:00:00，此时访问不到这个请求，因为此时dateTime=2017-02-12T12:00:00为字符串类型，不能变成LocalDateTime dateTime。
+如果我在浏览器输入http://localhost:8080/hello2?dateTime=2017-02-12T12:00:00
+此时访问不到这个请求，因为此时dateTime=2017-02-12T12:00:00为字符串类型，不能变成LocalDateTime dateTime。
 
 使用自带的类型转化工具，因为这个不是json格式的请求体，所以不能使用时@JsonFormat。
 
