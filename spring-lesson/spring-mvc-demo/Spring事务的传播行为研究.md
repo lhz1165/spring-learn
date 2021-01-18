@@ -1,4 +1,4 @@
-[<<<Returan to SpringMvc](../spring-mvc归纳.md)
+[<<<Returan to Spring事务](../spring-事务.md)
 # Spring事务的传播行为研究
 
 ## 场景1. Propagation.REQUIRED
