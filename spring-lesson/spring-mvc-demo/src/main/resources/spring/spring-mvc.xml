@@ -8,6 +8,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
     <!-- 配置自动扫描包 -->
     <context:component-scan base-package="controller" />
+    <mvc:annotation-driven conversion-service="conversionService"/>
     <mvc:annotation-driven />
     <!-- 配置视图解析器 -->
     <bean

@@ -175,3 +175,18 @@ public class Timestamp2LocaldateTimeConvert implements Converter<String, LocalDa
     }
 }
 ```
+
+### 补充：
+
+在其中我们只能使用一种转化器，一旦定义好了默认的就会被替换，原因是
+
+```java
+GenericConverter converter = getConverter(sourceType, targetType);
+```
+
+在获取convert方法中,需要用source类型和target类型，组成的key对象，例如string->localdatetime，然后去map里面get，这个ConverterCacheKey重写了hashcode和equlas方法，put进去就替换掉了，所以对于同一种类型的转换只能存在一种convert
+
+```java
+ConverterCacheKey key = new ConverterCacheKey(sourceType, targetType);
+GenericConverter converter = this.converterCache.get(key);
+```
