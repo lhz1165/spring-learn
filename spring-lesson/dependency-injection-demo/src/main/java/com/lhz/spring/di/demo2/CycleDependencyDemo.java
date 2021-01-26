@@ -1,6 +1,6 @@
 package com.lhz.spring.di.demo2;
 
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import com.lhz.spring.di.demo3.config.AopConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -11,15 +11,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class CycleDependencyDemo {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-        applicationContext.register(A.class,B.class);
+        applicationContext.register(AopConfig.class);
+        applicationContext.register(A.class, B.class);
         applicationContext.refresh();
 
+
         A a = applicationContext.getBean(A.class);
-        B b = applicationContext.getBean(B.class);
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(a.b);
-        System.out.println(b.a);
+        System.out.println("a的引用b为" + a.b);
+        a.p();
+
         applicationContext.close();
     }
 }

@@ -14,7 +14,11 @@ public class B {
     A a;
 
 
+    public void bbb() {
+        System.out.println("执行b.bbb()");
+    }
     public void setA(A a) {
         this.a = a;
     }
+
 }

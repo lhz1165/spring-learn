@@ -21,7 +21,10 @@ public class A {
 //    }
 
 
-
+    public void p() {
+        System.out.println("执行a.p()");
+        b.bbb();
+    }
 
     public void setB(B b) {
         this.b = b;

@@ -9,7 +9,7 @@ import java.lang.reflect.Proxy;
  * @author: lhz
  * @date: 2020/7/21
  **/
-public class MyAnnotationAwareAspectJAutoProxyCreator implements BeanPostProcessor {
+class MyAnnotationAwareAspectJAutoProxyCreator implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
