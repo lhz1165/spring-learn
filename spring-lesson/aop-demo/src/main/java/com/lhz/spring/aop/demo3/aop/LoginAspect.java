@@ -12,7 +12,10 @@ import org.aspectj.lang.annotation.Pointcut;
  **/
 @Aspect
 public class LoginAspect {
-    @Pointcut("execution(public * com.lhz.spring.aop.demo3.service.UserService.login(..))")
+
+
+
+    @Pointcut("@annotation(com.lhz.spring.aop.demo3.aop.Aop)")
     public void pointCut() {
     }
 

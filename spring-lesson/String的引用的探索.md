@@ -22,7 +22,7 @@ public static void main(String[] args) {
     String s1 = new String("1234");
     String s2 = s1.intern();//
     String s3 = "1234";
-    System.out.println(System.identityHashCode(s1));
+     System.out.println(System.identityHashCode(s1));
     System.out.println(System.identityHashCode(s2));
     System.out.println(System.identityHashCode(s3));
 }
