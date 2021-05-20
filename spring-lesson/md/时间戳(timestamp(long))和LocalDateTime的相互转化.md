@@ -68,5 +68,5 @@ public LocalDateTime toLocalDateTime2(long timestamp) {
 
 
 
-[^总结]: 以上是根据long类型的时间戳获取LocalDateTime的方式，同样如果想把Date转化为LocalDateTime，我们根据上面的思路，可以把Date使用getTime()方法变成long类型的时间戳，快一点可以通过toInstan()方法直接把Date转化为Instant对象去获取LocalDateTime；
+**<u>总结</u>**  : 以上是根据long类型的时间戳获取LocalDateTime的方式，同样如果想把Date转化为LocalDateTime，我们根据上面的思路，可以把Date使用getTime()方法变成long类型的时间戳，快一点可以通过toInstan()方法直接把Date转化为Instant对象去获取LocalDateTime；
 
