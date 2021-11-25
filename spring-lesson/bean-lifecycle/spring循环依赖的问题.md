@@ -120,7 +120,8 @@ exposedObject = initializeBean(beanName, exposedObject, mbd);
 
 ---------------------------------------------------------------------------------------
 
-//如果B需要三级缓存的A，那么就会调用这个方法，然后直接产生代理对象
+//如果B需要三级缓存的A，那么就会调用这个方法，然后直接产生代理对象   【AbstractAutoProxyCreator】implements SmartInstantiationAwareBeanPostProcessor 
+//是创建代理对象的类，因此在这里提前创建了代理对象 加入到三级缓存
 protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, Object bean) {
 		Object exposedObject = bean;
 		if (!mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
